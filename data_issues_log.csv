@@ -1,0 +1,13 @@
+id,column,issue,evidence,severity,treatment
+1,Age,Missing values (not random),177 rows (19.9%); 27.7% in 3rd class; survival 29.4% vs 40.6%,High,Impute with median by title group x class; keep flag `Age_was_missing`
+2,Cabin,Mostly missing (informative),687 rows (77.1%); 97.6% missing in 3rd class,High,Drop raw column; engineer `HasCabin` and `Deck` (Unknown if missing)
+3,Embarked,Missing values,"2 rows, both 1st-class women sharing fare 80.0 and cabin B28",Low,Impute mode (S)
+4,Fare,Extreme right skew,skew = 4.79; mean 32.2 vs median 14.5,Medium,Add `Fare_log = log(1 + Fare)`
+5,Fare,Outliers (IQR rule),116 passengers above fence 65.6; max 512.33 (genuine luxury fares),Medium,Keep; use log transform / robust models
+6,Fare,Suspicious zero values,"15 passengers with Fare = 0, all from Southampton, 1 survivor",Medium,Keep and flag; cannot verify (crew / complimentary?)
+7,Ticket,Non-independent observations,344 passengers share a ticket; shared tickets survive more (52.0% vs 29.8%),High,Add `TicketGroupSize`; use GroupKFold on ticket when modelling
+8,Name,Hidden information / inconsistent labels,Titles in free text; Mlle/Ms/Mme variants; rare titles,Medium,"Extract `TitleGroup` (Mr, Mrs, Miss, Master, Rare)"
+9,"SibSp, Parch, FamilySize",Multicollinearity,FamilySize correlates 0.89 with SibSp and 0.78 with Parch,Medium,Use FamilySize/IsAlone or the originals - not all together in linear models
+10,"Pclass, Fare",Confounded predictors,Spearman rho = -0.69; port effect partly explained by class,Medium,Interpret jointly; include interactions (sex x class) in models
+11,"Survived, Pclass, PassengerId",Wrong statistical type,Stored as integers but are binary / ordinal / ID,Low,Treat as categorical; drop PassengerId from features
+12,Dataset,Sampling / representativeness,"891 of ~2,200 people aboard; training split only",Medium,Avoid generalising beyond this sample; report as a limitation

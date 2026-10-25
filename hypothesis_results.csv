@@ -1,0 +1,7 @@
+id,hypothesis,test,statistic,p_value,effect_size,effect_metric,p_bonferroni,effect_magnitude,decision
+H1,Survival depends on sex,Chi-square (dof=1),260.71702016732104,1.1973570627755645e-58,0.5433513806577551,Cramer's V,7.184142376653387e-58,large,Reject H0
+H2,Survival depends on passenger class,Chi-square (dof=2),102.88898875696056,4.549251711298793e-23,0.33981738800531175,Cramer's V,2.7295510267792755e-22,medium,Reject H0
+H3,Fare differs between survivors and non-survivors,Mann-Whitney U,129951.5,4.553477179250237e-22,0.3842446127461945,Rank-biserial r,2.7320863075501424e-21,medium,Reject H0
+H4,Age differs between survivors and non-survivors,Mann-Whitney U,57682.0,0.16049252477737763,-0.06177618737800916,Rank-biserial r,0.9629551486642658,negligible,Fail to reject H0
+H5,Survival depends on port of embarkation,Chi-square (dof=2),26.48914983923762,1.769922284120912e-06,0.17261682709984438,Cramer's V,1.0619533704725472e-05,small,Reject H0
+H6,Survival depends on family group,Chi-square (dof=2),74.5372490469824,6.522919536640473e-17,0.28923299057355023,Cramer's V,3.913751721984284e-16,small,Reject H0
